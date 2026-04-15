@@ -330,5 +330,3 @@ Node 4 is the direct implementation of Finding 1. The confirmation step that doe
 Nodes 1 and 2 together are the direct implementation of Finding 3. The classification logic and tiered retrieval are the routing intelligence that does not exist on chat.langchain.com today.
 
 The eval dataset directly measures whether both findings were correctly implemented. 100% tier accuracy confirms the routing logic works. The judge scores identify where the KB needs to grow, which is the same feedback loop I proposed in Finding 1 of the product brief.
-
-This is the complete builder-operator loop: observe the problem, propose the solution, ship it, measure it, identify what to improve next.
