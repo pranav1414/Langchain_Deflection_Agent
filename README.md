@@ -127,7 +127,7 @@ Prerequisites are Python 3.10 or higher, a Google AI API key with access to Gemi
 **Step 1 — Clone and set up environment**
 
 ```bash
-git clone https://github.com/pranav1414/langchain-deflection-agent
+git clone https://github.com/pranav1414/Langchain_Deflection_Agent
 cd langchain-deflection-agent
 py -3.10 -m venv gtmlc
 gtmlc\Scripts\activate
