@@ -1,0 +1,30 @@
+# Environment variables - never push these
+.env
+
+# Virtual environment
+gtmlc/
+
+# ChromaDB data - too large for GitHub
+chroma_db/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Logs
+agent.log
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Byte-compiled files
+*.egg-info/
+dist/
+build/
