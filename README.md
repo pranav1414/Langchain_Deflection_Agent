@@ -229,10 +229,6 @@ The low judge scores revealed a clear pattern. The knowledge base had strong cov
 
 This is the eval-to-KB feedback loop working exactly as designed. The eval results told me precisely what to add to the knowledge base. I added a LangGraph overview article, re-ran ingestion, and the "What is LangGraph" question now returns a clean definition with a code example at 100% confidence.
 
-**What I would change next**
-
-Adding KB coverage for low-scoring categories is the immediate priority, specifically installation guides, a StateGraph definition article, and more conditional edge examples. Running the eval three times and averaging scores would reduce LLM judge variance, which is a known limitation of single-pass evaluation. Replacing static scraping with Playwright would give 10 to 15 real chunks per page instead of the current 1. Adding category-specific retrieval prompts would improve precision. Automating KB updates from resolved escalation traces in LangSmith would close the feedback loop completely without manual intervention.
-
 **Regression monitoring**
 
 Run the eval dataset weekly. Alert if tier accuracy drops below 95%, if average judge score drops below 3.0, if average confidence drops below 0.5, or if escalation rate for Tier 1 questions exceeds 15%. Every change to prompts, KB content, or routing logic triggers an eval run before deployment. The eval dataset in LangSmith serves as the regression test suite.
@@ -272,6 +268,10 @@ There is no real escalation integration. The escalation packages full context bu
 Session metrics reset on Streamlit restart. Deflection rate is calculated from the current session only with no persistence. The production fix is a PostgreSQL or Redis store for metrics persistence across sessions.
 
 Tier 3 questions receive immediate escalation with no attempt to surface related documentation. The production improvement would be surfacing related docs as context while still escalating, so the user has something useful while they wait.
+
+## What I would change next
+
+Adding KB coverage for low-scoring categories is the immediate priority, specifically installation guides, a StateGraph definition article, and more conditional edge examples. Running the eval three times and averaging scores would reduce LLM judge variance, which is a known limitation of single-pass evaluation. Replacing static scraping with Playwright would give 10 to 15 real chunks per page instead of the current 1. Adding category-specific retrieval prompts would improve precision. Automating KB updates from resolved escalation traces in LangSmith would close the feedback loop completely without manual intervention.
 
 ---
 
