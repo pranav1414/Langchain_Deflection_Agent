@@ -112,11 +112,11 @@ LangGraph handles agent orchestration, state management, node routing, and condi
 
 ChromaDB contains two collections.
 
-The langchain_docs collection has 43 chunks. It contains content scraped from 9 real LangChain documentation URLs plus supplementary articles authored to fill JavaScript rendering gaps. It covers persistence and checkpointers, streaming, state management, conditional edges and routing, LangSmith tracing, tools and tool calling, RAG with ChromaDB, human in the loop, and a LangGraph overview.
+langchain_docs — 43 chunks from 9 real LangChain documentation URLs plus supplementary articles authored to fill JavaScript rendering gaps. Covers persistence, streaming, state management, routing, LangSmith, tools, RAG, and a LangGraph overview.
 
-The support_kb collection has 7 articles manually authored based on real resolved developer issues. It covers token streaming broken after LangGraph upgrade, agent not persisting state between runs, ChromaDB returning empty results, LangSmith traces not appearing in dashboard, Pydantic validation errors in LangGraph state, conditional edges not routing correctly, and Gemini API 429 rate limit errors.
+support_kb — 7 articles authored from real resolved developer issues. Covers streaming broken after upgrade, state not persisting, ChromaDB empty results, LangSmith traces not appearing, Pydantic errors, conditional edge routing, and Gemini rate limits.
 
-The hybrid approach was necessary because LangChain docs are JavaScript rendered. Static scraping returns approximately 1 chunk per page because the page content is not present in the raw HTML before JavaScript executes. The hybrid approach combines real URL provenance with manually authored content for coverage. In production the right solution is Playwright for full JavaScript rendering, or pulling directly from LangChain's GitHub markdown source files which are the ground truth for the docs site.
+The hybrid approach was necessary because LangChain docs are JavaScript rendered — static scraping returns roughly 1 chunk per page. In production the fix is Playwright or pulling directly from LangChain's GitHub markdown source files.
 
 ---
 
