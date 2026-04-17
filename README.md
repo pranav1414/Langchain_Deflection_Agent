@@ -106,7 +106,7 @@ LangGraph handles agent orchestration, state management, node routing, and condi
 
 ---
 
-## Knowledge Base
+## Knowledge Base (KB)
 
 ChromaDB contains two collections.
 
