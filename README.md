@@ -318,13 +318,3 @@ LangChain Deflection Agent/
 ```
 
 ---
-
-## Connecting the Dots
-
-In round 2 I identified two gaps in LangChain's support products through a day of firsthand testing as a first customer. Finding 1 was the missing feedback loop on support.langchain.com. Finding 3 was the absent intent routing on chat.langchain.com.
-
-Node 4 is the direct implementation of Finding 1. The confirmation step that does not exist on support.langchain.com today is the entire point of that node.
-
-Nodes 1 and 2 together are the direct implementation of Finding 3. The classification logic and tiered retrieval are the routing intelligence that does not exist on chat.langchain.com today.
-
-The eval dataset directly measures whether both findings were correctly implemented. 100% tier accuracy confirms the routing logic works. The judge scores identify where the KB needs to grow, which is the same feedback loop I proposed in Finding 1 of the product brief.
