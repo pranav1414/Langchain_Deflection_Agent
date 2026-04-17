@@ -92,13 +92,13 @@ Question is the only required field. Everything else starts as None and gets fil
 
 The agent never crashes. Every node has a fallback path.
 
-Node 1 — if Gemini fails to return valid JSON or the API call fails, the agent defaults to Tier 2 and logs the error. The workflow continues.
+Node 1 : if Gemini fails to return valid JSON or the API call fails, the agent defaults to Tier 2 and logs the error. The workflow continues.
 
-Node 2 — if ChromaDB returns no results for a query, the agent returns a fallback message and continues to Node 3 which attempts a direct answer. If ChromaDB throws any exception, the agent returns a graceful fallback and continues.
+Node 2 : if ChromaDB returns no results for a query, the agent returns a fallback message and continues to Node 3 which attempts a direct answer. If ChromaDB throws any exception, the agent returns a graceful fallback and continues.
 
-Node 3 — if the Gemini API call fails, the agent retries once automatically. If the second attempt also fails, it returns a graceful error message with confidence 0.0. The workflow continues to Node 4.
+Node 3 : if the Gemini API call fails, the agent retries once automatically. If the second attempt also fails, it returns a graceful error message with confidence 0.0. The workflow continues to Node 4.
 
-Node 5 — if the escalation summary generation fails, the agent falls back to a plain text summary built directly from the state data. The escalation always completes regardless.
+Node 5 : if the escalation summary generation fails, the agent falls back to a plain text summary built directly from the state data. The escalation always completes regardless.
 
 ---
 
