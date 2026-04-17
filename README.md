@@ -1,7 +1,5 @@
 # LangChain Support Deflection Agent
 
-Built as part of the LangChain GTM Engineer take-home assignment. This agent is the production implementation of findings identified during firsthand testing of chat.langchain.com and support.langchain.com on April 8th, 2026.
-
 ---
 
 ## The Origin Story
