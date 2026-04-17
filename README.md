@@ -6,11 +6,11 @@ Built as part of the LangChain GTM Engineer take-home assignment. This agent is 
 
 ## The Origin Story
 
-In round 2 of the interview process I spent a day as a first customer testing both LangChain support products. I identified two specific gaps that directly informed what I built here.
+I spent a day testing both LangChain support products as a first customer and identified two specific gaps that directly informed what I built here.
 
-The first gap was the missing feedback loop on support.langchain.com. After every Ask AI answer the Open Case button appears immediately with no confirmation step asking whether the answer helped. There is no way to distinguish between a user who was genuinely helped and a user who gave up and left. True deflection and false deflection look identical in the data. This means the deflection rate metric is inflated relative to actual customer outcomes.
+The first gap was the missing feedback loop on support.langchain.com. After every Ask AI answer the Open Case button appears immediately with no confirmation step. True deflection and false deflection look identical in the data - meaning the deflection rate metric is inflated relative to actual customer outcomes.
 
-The second gap was the absence of intent-based routing on chat.langchain.com. Every question regardless of complexity gets the same Docs Agent. A developer asking what is a checkpointer and a developer debugging a production streaming failure receive identical treatment. No routing intelligence exists to send complex debugging questions to deeper retrieval or to escalate architecture questions directly to engineers without wasting LLM calls.
+The second gap was the absence of intent-based routing on chat.langchain.com. Every question regardless of complexity gets the same Docs Agent. No routing intelligence exists to send debugging questions to deeper retrieval or escalate architecture questions directly to engineers without wasting LLM calls.
 
 This agent is the production implementation of both findings. Node 4 is the feedback loop. Nodes 1 and 2 are the routing intelligence.
 
