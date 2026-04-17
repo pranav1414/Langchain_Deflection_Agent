@@ -279,19 +279,13 @@ Adding KB coverage for low-scoring categories is the immediate priority, specifi
 
 These are genuine observations from building on LangGraph and LangSmith as a first customer.
 
-LangGraph state typing is strict. Passing a regular Python dictionary where a TypedDict was expected caused silent failures that appeared as errors in unrelated nodes downstream. The error message did not point to the state definition. The fix is to always define state with TypedDict and use Optional for every field that is not filled at initialisation.
-
-LangSmith environment variables must load before any LangChain import. If you call load_dotenv after importing LangChain the tracing silently fails with no error and no traces appear. The documentation mentions this but it is easy to miss. The fix is load_dotenv as the absolute first line in every entry point file.
-
-ChromaDB n_results cannot exceed collection size. Querying with n_results=3 on a collection with 2 documents throws an error rather than returning what is available. There is no warning in the documentation. The fix is always using min(n_results, collection.count()) as the query parameter.
-
-Gemini model availability is not clearly documented. gemini-1.5-flash and gemini-2.0-flash were both unavailable on my API key despite being listed in documentation. The error message said NOT_FOUND which was not helpful for debugging. The fix was programmatically listing available models using the google-generativeai SDK before attempting any API calls.
-
-LangGraph conditional edge return values are case sensitive and must exactly match the mapping dictionary keys. Returning a string that was slightly different from the dictionary key caused a KeyError with no message identifying which edge mapping was wrong. The fix is always defining the routing function return values and the mapping dictionary keys in the same place so they cannot drift apart.
-
-The sentence-transformers BertModel UNEXPECTED key warning appears on every run. It is harmless but alarming on first encounter. The all-MiniLM-L6-v2 model includes a key that the current sentence-transformers version does not expect. It does not affect embedding quality or retrieval accuracy.
-
-KB coverage gaps surface as honest no-context responses rather than errors. When I first asked "What is LangGraph?" the agent correctly reported it lacked enough context to define it, but the response was unhelpful to a user who just needed a definition. The fix was adding a dedicated LangGraph overview article to the knowledge base. The lesson is that a KB needs both conceptual overview articles and feature-specific technical guides to cover the full spectrum of user questions. Eval results surface these gaps systematically.
+LangGraph state typing - passing a plain dict where TypedDict was expected caused silent failures in unrelated downstream nodes. Fix: always use TypedDict with Optional for every non-required field.
+LangSmith tracing - load_dotenv must be called before any LangChain import or traces silently fail with no error message.
+ChromaDB n_results - querying with n_results greater than collection size throws an error instead of returning what exists. Fix: always use min(n_results, collection.count()).
+Gemini model availability - gemini-1.5-flash and gemini-2.0-flash returned NOT_FOUND despite being documented as available. Fix: list available models programmatically before making API calls.
+LangGraph conditional edges  - return values are case sensitive and must exactly match the mapping dictionary keys. Mismatches throw a KeyError with no helpful message.
+sentence-transformers BertModel warning - UNEXPECTED key warning appears on every run. It is harmless but alarming on first encounter.
+KB coverage gaps - missing conceptual overview articles surface as honest no-context responses rather than errors. Eval results are the right way to find these gaps systematically.
 
 ---
 
