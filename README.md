@@ -235,15 +235,15 @@ Run the eval dataset weekly. Alert if tier accuracy drops below 95%, if average 
 
 ## Key Tradeoffs
 
-**Accuracy vs cost:** Gemini 2.5 Flash was chosen over Pro for speed and cost. Flash averages approximately $0.006 per query. At 1000 queries per day that is $6 versus roughly $60 for Pro. The tradeoff is that Flash is slightly less accurate on complex nuanced questions. The production decision would be to A/B test Flash versus Pro specifically on Tier 2 debugging questions and measure judge score improvement against cost increase.
+**Accuracy vs cost** - Gemini Flash over Pro. Flash costs ~$0.006 per query versus ~$0.06 for Pro. Tradeoff is slightly lower accuracy on complex questions. Production decision: A/B test Flash vs Pro on Tier 2 questions and measure judge score improvement against cost increase.
 
-**Latency vs depth:** Tier 1 searches docs only and typically responds in under 5 seconds. Tier 2 searches both collections and takes 2 to 3 seconds longer. Tier 3 skips all retrieval and responds instantly. The tradeoff is that Tier 2 adds latency in exchange for better answer quality on debugging questions. The production decision would be to cache frequent Tier 1 queries to reduce latency across the most common question types.
+**Latency vs depth** - Tier 1 responds in under 5 seconds searching docs only. Tier 2 takes 2-3 seconds longer searching both collections. Tier 3 responds instantly with no retrieval. Production decision: cache frequent Tier 1 queries to reduce latency on the most common question types.
 
-**Determinism vs flexibility:** Classification uses LLM judgment rather than keyword rules. This is flexible and handles natural language variations well. The tradeoff is that LLM classification has inherent variance. The same question could theoretically be classified differently across two runs. The production decision would be to add a confidence threshold so that if classification confidence is below 0.7, the agent defaults to Tier 2 to err on the side of deeper retrieval.
+**Determinism vs flexibility** - Classification uses LLM judgment not keyword rules. Handles natural language variations well but has inherent variance. Production decision: add a confidence threshold below 0.7 that defaults to Tier 2 to err on the side of deeper retrieval.
 
-**User control vs automation:** The agent shows a low confidence warning below 60% but does not automatically escalate. The user retains control over when to open a ticket. Automatic escalation was considered but rejected because it would create surprise escalations for users who found the answer sufficient despite the low confidence score. The production experiment would be A/B testing automatic versus user-controlled escalation and measuring true deflection rate against user satisfaction scores.
+**User control vs automation** - Agent shows a low confidence warning but does not automatically escalate. Automatic escalation was rejected because it creates surprise escalations for users who found the answer sufficient. Production experiment: A/B test automatic vs user-controlled escalation against true deflection rate.
 
-**RAG strict mode vs fallback:** The agent answers only from retrieved context. Gemini cannot fall back to its own training data. This prioritises accuracy and traceability over coverage. When the KB lacks relevant content the agent gives an honest low-confidence response rather than a confident but potentially outdated answer from training data. The production decision is continuous KB expansion driven by eval failure signals and escalation trace analysis.
+**RAG strict mode vs fallback** - Agent answers only from retrieved context. Gemini cannot fall back to training data. Prioritises accuracy and traceability over coverage. Production decision: continuous KB expansion driven by eval failure signals and escalation trace analysis.
 
 ---
 
