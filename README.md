@@ -280,11 +280,17 @@ Adding KB coverage for low-scoring categories is the immediate priority, specifi
 These are genuine observations from building on LangGraph and LangSmith as a first customer.
 
 LangGraph state typing - passing a plain dict where TypedDict was expected caused silent failures in unrelated downstream nodes. Fix: always use TypedDict with Optional for every non-required field.
+
 LangSmith tracing - load_dotenv must be called before any LangChain import or traces silently fail with no error message.
+
 ChromaDB n_results - querying with n_results greater than collection size throws an error instead of returning what exists. Fix: always use min(n_results, collection.count()).
+
 Gemini model availability - gemini-1.5-flash and gemini-2.0-flash returned NOT_FOUND despite being documented as available. Fix: list available models programmatically before making API calls.
+
 LangGraph conditional edges  - return values are case sensitive and must exactly match the mapping dictionary keys. Mismatches throw a KeyError with no helpful message.
+
 sentence-transformers BertModel warning - UNEXPECTED key warning appears on every run. It is harmless but alarming on first encounter.
+
 KB coverage gaps - missing conceptual overview articles surface as honest no-context responses rather than errors. Eval results are the right way to find these gaps systematically.
 
 ---
