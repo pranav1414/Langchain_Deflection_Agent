@@ -112,9 +112,9 @@ LangGraph handles agent orchestration, state management, node routing, and condi
 
 ChromaDB contains two collections.
 
-langchain_docs — 43 chunks from 9 real LangChain documentation URLs plus supplementary articles authored to fill JavaScript rendering gaps. Covers persistence, streaming, state management, routing, LangSmith, tools, RAG, and a LangGraph overview.
+langchain_docs - 43 chunks from 9 real LangChain documentation URLs plus supplementary articles authored to fill JavaScript rendering gaps. Covers persistence, streaming, state management, routing, LangSmith, tools, RAG, and a LangGraph overview.
 
-support_kb — 7 articles authored from real resolved developer issues. Covers streaming broken after upgrade, state not persisting, ChromaDB empty results, LangSmith traces not appearing, Pydantic errors, conditional edge routing, and Gemini rate limits.
+support_kb - 7 articles authored from real resolved developer issues. Covers streaming broken after upgrade, state not persisting, ChromaDB empty results, LangSmith traces not appearing, Pydantic errors, conditional edge routing, and Gemini rate limits.
 
 The hybrid approach was necessary because LangChain docs are JavaScript rendered — static scraping returns roughly 1 chunk per page. In production the fix is Playwright or pulling directly from LangChain's GitHub markdown source files.
 
